@@ -1,0 +1,63 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+logging:
+  level:
+    root: INFO
+    com.creatureadoption: DEBUG
+
+app:
+  creatures-service:
+    host: localhost
+    port: 8081
+  customers-service:
+    host: localhost
+    port: 8082
+  trainings-service:
+    host: localhost
+    port: 8083
+  adoptions-service:
+    host: localhost
+    port: 8084
+
+spring:
+  application:
+    name: api-gateway
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+server:
+  port: 8080
+
+app:
+  creatures-service:
+    host: creatures-service
+    port: 8081
+  customers-service:
+    host: customers-service
+    port: 8082
+  trainings-service:
+    host: trainings-service
+    port: 8083
+  adoptions-service:
+    host: adoptions-service
+    port: 8084
+#app:
+#  creatures-service:
+#    host: creatures-service
+#    port: 8080
+#  customers-service:
+#    host: customers-service
+#    port: 8080
+#  trainings-service:
+#    host: trainings-service
+#    port: 8080
+#  adoptions-service:
+#    host: adoptions-service
+#    port: 8080

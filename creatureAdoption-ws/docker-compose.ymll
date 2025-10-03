@@ -1,0 +1,181 @@
+version: "3.8"
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    hostname: api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - creatures-service
+      - customers-service
+      - trainings-service
+      - adoptions-service  # Added dependency on adoptions-service
+
+  # Added adoptions-service
+  adoptions-service:
+    build: ./adoptions-service
+    hostname: adoptions-service
+    ports:
+      - "8084:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - mongodb
+      - customers-service
+      - creatures-service
+      - trainings-service
+
+  creatures-service:
+    build: ./creatures-service
+    hostname: creatures-service
+    ports:
+      - "8081:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      postgres1:
+        condition: service_healthy
+
+  customers-service:
+    build: ./customers-service
+    hostname: customers-service
+    ports:
+      - "8082:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      mysql1:
+        condition: service_healthy
+
+  trainings-service:
+    build: ./trainings-service
+    hostname: trainings-service
+    ports:
+      - "8083:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      mysql2:
+        condition: service_healthy
+
+  mysql1:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=customers-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+    volumes:
+      - type: tmpfs
+        target: /var/lib/mysql
+      - ./customers-service/src/main/resources/db/init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uuser", "-ppwd", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  mysql2:
+    image: mysql:5.7
+    ports:
+      - "3307:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpwd
+      - MYSQL_DATABASE=trainings-db
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=pwd
+    volumes:
+      - type: tmpfs
+        target: /var/lib/mysql
+      - ./trainings-service/src/main/resources/db/init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-uuser", "-ppwd", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  postgres1:
+    image: postgres:latest
+    hostname: postgres1
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - PGUSER=user
+      - POSTGRES_PASSWORD=pwd
+      - POSTGRES_DB=creatures-db
+    volumes:
+      - type: tmpfs
+        target: /var/lib/postgresql/data
+      - ./creatures-service/src/main/resources/db/init-scripts:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "postgres1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  mongodb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=user
+      - MONGO_INITDB_ROOT_PASSWORD=pwd
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    ports:
+      - 8085:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=user
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=pwd
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+
+  phpmyadmin1:
+    image: phpmyadmin:5.2.0
+    container_name: PhpMyAdmin-Customers
+    links:
+      - mysql1
+    restart: always
+    ports:
+      - "5013:80"
+    environment:
+      - PMA_HOST=mysql1
+      - PMA_PORT=3306
+
+  phpmyadmin2:
+    image: phpmyadmin:5.2.0
+    container_name: PhpMyAdmin-Trainings
+    links:
+      - mysql2
+    restart: always
+    ports:
+      - "5014:80"
+    environment:
+      - PMA_HOST=mysql2
+      - PMA_PORT=3306
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: PgAdmin-Creatures
+    restart: always
+    ports:
+      - "5015:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@example.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    depends_on:
+      - postgres1
+
+volumes:
+  mongo: {}

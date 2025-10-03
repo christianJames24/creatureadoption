@@ -1,0 +1,45 @@
+Get all customers
+
+curl -v http://localhost:8080/api/v1/customers | jq
+
+Get a  customer by Id
+
+curl -v http://localhost:8080/api/v1/customers/b2a86f99-3866-427d-a8d0-defd478493ce | jq
+
+
+Post a new customer
+
+curl -v -X POST http://localhost:8080/api/v1/customers -H "Content-Type: application/json" -d '{"firstName": "Sara",         "lastName": "Smith", "emailAddress": "sara0@dot.gov", "streetAddress": "73 Shoshone Road", "city": "Barraute", "province": "Québec", "country": "Canada", "postalCode": "P0M 2T6", "phoneNumbers": [{"type": "WORK", "number": "450-123-5678"}] }'  | jq
+
+
+Update a customer
+
+curl -v -X PUT http://localhost:8080/api/v1/customers/5364b1d3-2497-408f-be0a-1467dcccaf68 -H "Content-Type: application/json" -d '{"firstName": "Sarah",         "lastName": "Smith", "emailAddress": "sara0@dot.gov", "streetAddress": "73 Shoshone Road", "city": "Barraute", "province": "Québec", "country": "Canada", "postalCode": "P0M 2T6", "phoneNumbers": [{"type": "WORK", "number": "450-123-5678"}] }'  | jq
+
+
+delete a customer
+
+curl -v -X DELETE http://localhost:8080/api/v1/customers/5364b1d3-2497-408f-be0a-1467dcccaf68 | jq
+
+
+Get all clients
+
+curl -v http://localhost:8080/api/v1/clients | jq
+
+Get a  client by Id
+
+curl -v http://localhost:8080/api/v1/clients/7104eeef-23d0-43d8-8186-a77720f4fbc8 | jq
+
+Post a new client
+
+curl -v -X POST http://localhost:8080/api/v1/clients -H "Content-Type: application/json" -d '{"firstName": "Christine",         "lastName": "Gerard", "emailAddress": "aucceli0@dot.gov", "streetAddress": "73 Shoshone Road", "city": "Barraute", "province": "Québec", "country": "Canada", "postalCode": "P0M 2T6" }'  | jq
+
+delete a client
+
+curl -v -X DELETE http://localhost:8080/api/v1/clients/7104eeef-23d0-43d8-8186-a77720f4fbc8 | jq
+
+update a client
+
+curl -v -X PUT http://localhost:8080/api/v1/clients/332b4b66-5810-4660-9b8a-793a01f8f065 -H "Content-Type: application/json" -d '{"firstName": "Caroline", "lastName": "Gerard", "emailAddress": "aucceli0@dot.gov", "streetAddress": "73 Shoshone Road", "city": "Barraute", "province": "Québec", "country": "Canada", "postalCode": "P0M 2T6" }'  | jq
+
+Note: -v turns on verbose. It will allow us to see the HTTP response codes.

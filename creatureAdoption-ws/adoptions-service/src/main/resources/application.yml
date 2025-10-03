@@ -1,0 +1,119 @@
+# Default Spring Profile
+server:
+  port: 8084
+  error:
+    include-message: always
+
+logging:
+  level:
+    root: INFO
+    com.creatureadoption: DEBUG
+    org.springframework.data.mongodb.core.MongoTemplate: DEBUG
+    org.mongodb.driver: DEBUG
+    org.springframework.data.mongodb.embedded: DEBUG
+
+spring:
+  config:
+    activate:
+      on-profile: default  # This is the correct placement
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/adoptions-db
+      database: adoptions-db
+      authentication-database: admin
+      auto-index-creation: true
+  mongodb:
+    embedded:
+      version: 5.0.5
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 5.0.5
+
+app:
+  creatures-service:
+    host: localhost
+    port: 8080
+  customers-service:
+    host: localhost
+    port: 8080
+  trainings-service:
+    host: localhost
+    port: 8080
+
+---
+# Test profile
+spring:
+  config:
+    activate:
+      on-profile: test
+  data:
+    mongodb:
+      username: user
+      password: pwd
+      host: localhost
+      port: 0
+      database: adoptions-db
+      authentication-database: admin
+      auto-index-creation: true
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        version: 5.0.5
+
+app:
+  creatures-service:
+    host: localhost
+    port: 8081
+  customers-service:
+    host: localhost
+    port: 8082
+  trainings-service:
+    host: localhost
+    port: 8083
+
+---
+# Docker profile
+spring:
+  config:
+    activate:
+      on-profile: docker
+
+  data:
+    mongodb:
+      username: user
+      password: pwd
+      host: mongodb
+      port: 27017
+      database: adoptions-db
+      authentication-database: admin
+      auto-index-creation: true
+  mongodb:
+    embedded:
+      enabled: false
+      version: none
+
+de:
+  flapdoodle:
+    mongodb:
+      embedded:
+        enabled: false
+
+server:
+#  port: 8080
+  port: 8084
+
+app:
+  creatures-service:
+    host: api-gateway
+    port: 8080
+  customers-service:
+    host: api-gateway
+    port: 8080
+  trainings-service:
+    host: api-gateway
+    port: 8080

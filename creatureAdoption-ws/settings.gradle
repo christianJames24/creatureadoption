@@ -1,0 +1,5 @@
+include 'customers-service'
+include 'creatures-service'
+include 'trainings-service'
+include 'adoptions-service'
+include 'api-gateway'

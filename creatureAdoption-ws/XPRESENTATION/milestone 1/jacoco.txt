@@ -1,0 +1,8 @@
+creatures-service:
+file:///C:/Users/oshaw/Desktop/cegep/webServices/creatureAdoption-ws/creatures-service/build/reports/jacoco/test/html/index.html
+
+customers-service
+file:///C:/Users/oshaw/Desktop/cegep/webServices/creatureAdoption-ws/customers-service/build/reports/jacoco/test/html/index.html
+
+trainings-service
+file:///C:/Users/oshaw/Desktop/cegep/webServices/creatureAdoption-ws/trainings-service/build/reports/jacoco/test/html/index.html

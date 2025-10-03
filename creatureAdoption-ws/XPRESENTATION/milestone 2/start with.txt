@@ -1,0 +1,23 @@
+start with:
+docker-compose build
+
+then:
+docker-compose up -d
+
+and to restart the data stuff:
+docker-compose restart
+
+
+//OKAY so like uhh u can check exposed ports in docker desktop -containers tab and open up creatureadoption-ws
+
+//here how to access the guis
+http://localhost:8085/ (user/pwd)--mongodb(adoptions)
+http://localhost:5013/ (user/pwd)--phpMyAdmin(customers)
+http://localhost:5015/ (admin@example.com/admin)--pgadmin(creatures)
+[[FOR CREATURES CONNECTION TAB FOR PGADMIN:
+	-Host name/address: postgres1
+	-Maintenance database: creatures-db
+	-Username: user
+	-Password: pwd
+]]
+http://localhost:5014/ (user/pwd)--phpMyAdmin(trainings)

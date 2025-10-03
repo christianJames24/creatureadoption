@@ -1,0 +1,58 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Container.puml
+
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+
+!include FONTAWESOME/users.puml
+
+AddElementTag("microService", $shape=EightSidedShape(), $bgColor="CornflowerBlue", $fontColor="white", $legendText="micro service\neight sided")
+AddElementTag("storage", $shape=RoundedBoxShape(), $bgColor="lightSkyBlue", $fontColor="white")
+AddRelTag(aggregate_root, $lineColor="red")
+
+LAYOUT_TOP_DOWN()
+'LAYOUT_WITH_LEGEND()
+SHOW_PERSON_OUTLINE()
+'HIDE_STEREOTYPE()
+
+title Container Diagram for Creature Adoption System
+
+Person(customer, "Customer", "Person looking to adopt creatures")
+
+System_Boundary(creature_adoption, "Creature Adoption System"){
+    Container(webapp, "Web Application", "JavaScript, React", "Delivers the static content and the creature adoption single page application.")
+    Container(singlepage_app, "Single-Page Application", "JavaScript, React", "Provides the creature adoption functionality to customers via their browser.")
+    Container(api_gateway, "API Gateway", "Java, Spring Boot", "Provides creature adoption functionality via a JSON/REST HTTPS API")
+
+    Container(creature_service, "creature-service", "Java, Spring Boot", "Provides creature management functionality via a JSON/REST HTTPS API", $tags = microService)
+    Container(customer_service, "customer-service", "Java, Spring Boot", "Provides customer management functionality via a JSON/REST HTTPS API", $tags = microService)
+    Container(training_service, "training-service", "Java, Spring Boot", "Provides training program management via a JSON/REST HTTPS API", $tags = microService)
+    Container(adoption_service, "adoption-service", "Java, Spring Boot", "Provides adoption management using the aggregator pattern via a JSON/REST HTTPS API (Milestone 2)", $tags = "microService")
+
+    ContainerDb(customer_db, "Customer DB", "MySQL 5.5.x", "Stores customer information", $tags = "storage")
+    ContainerDb(creature_db, "Creature DB", "PostgreSQL", "Stores creature details and inventory", $tags = "storage")
+    ContainerDb(training_db, "Training DB", "MySQL 5.5.x", "Stores training program details", $tags = "storage")
+    ContainerDb(adoption_db, "Adoption DB", "Mongo DB", "Stores adoption records", $tags = "storage")
+
+
+    Rel(customer, webapp, "Visits creatureadoption.com using", "HTTPS")
+    Rel_R(webapp, singlepage_app, "Delivers to the customer's browser")
+    Rel(customer, singlepage_app, "Browses creatures, manages profile, requests adoptions using", "HTTPS")
+
+    Rel(singlepage_app, api_gateway, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(api_gateway, creature_service, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(api_gateway, customer_service, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(api_gateway, training_service, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(api_gateway, adoption_service, "Makes API calls to", "JSON/REST/HTTPS")
+
+    Rel(adoption_service, creature_service, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(adoption_service, customer_service, "Makes API calls to", "JSON/REST/HTTPS")
+    Rel(adoption_service, training_service, "Makes API calls to", "JSON/REST/HTTPS")
+
+    Rel_D(creature_service, creature_db, "Reads from and writes to", "JDBC")
+    Rel_D(customer_service, customer_db, "Reads from and writes to", "JDBC")
+    Rel_D(training_service, training_db, "Reads from and writes to", "JDBC")
+    Rel_R(adoption_service, adoption_db, "Reads from and writes to", "Mongo")
+}
+
+@enduml

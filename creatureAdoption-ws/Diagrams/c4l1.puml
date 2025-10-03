@@ -1,0 +1,12 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
+
+title "System Context Diagram for Creature Adoption System"
+
+Person(customer, "Customer", "Person looking to adopt magical creatures")
+System(creature_adoption, "Creature Adoption System", "Allows customers to adopt magical creatures and manage the adoption process")
+
+Rel(customer, creature_adoption, "Browses creatures, manages profile, requests adoptions, selects training programs", "Uses")
+
+'SHOW_LEGEND()
+@enduml

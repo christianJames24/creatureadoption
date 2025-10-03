@@ -1,0 +1,1840 @@
+{
+	"info": {
+		"_postman_id": "546dc5de-4cf5-4562-b3bc-a3ddf0186fc0",
+		"name": "Creature adoption milestone 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41267338"
+	},
+	"item": [
+		{
+			"name": "customers",
+			"item": [
+				{
+					"name": "GET ALL – success path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - success path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/6f8d2e53-9b4c-48a7-91fe-c508dde7817a",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"6f8d2e53-9b4c-48a7-91fe-c508dde7817a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - 422",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/invalid-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"invalid-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - success path",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Misty\",\r\n  \"lastName\": \"Waterflower\",\r\n  \"emailAddress\": \"misty@goldenrod.com\",\r\n  \"contactMethodPreference\": \"PHONE\",\r\n  \"streetAddress\": \"321 Cerulean Ave\",\r\n  \"city\": \"Cerulean City\",\r\n  \"province\": \"Kanto\",\r\n  \"country\": \"Japan\",\r\n  \"postalCode\": \"12345\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - 404",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Misty\",\r\n  \"lastName\": \"Waterflower\",\r\n  \"emailAddress\": \"misty@goldenrod.com\",\r\n  \"contactMethodPreference\": \"PHONE\",\r\n  \"streetAddress\": \"321 Cerulean Ave\",\r\n  \"city\": \"Cerulean City\",\r\n  \"province\": \"Kanto\",\r\n  \"country\": \"Japan\",\r\n  \"postalCode\": \"12345\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - 422",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Misty\",\r\n  \"lastName\": \"Waterflower\",\r\n  \"emailAddress\": \"misty@goldenrod.com\",\r\n  \"contactMethodPreference\": \"PHONE\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Custom Exception",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Test\",\r\n  \"lastName\": \"User\",\r\n  \"emailAddress\": \"gym.leader@castelia.com\",\r\n  \"contactMethodPreference\": \"EMAIL\",\r\n  \"streetAddress\": \"123 Gallery St\",\r\n  \"city\": \"Castelia City\",\r\n  \"province\": \"UNOVA\",\r\n  \"country\": \"United States\",\r\n  \"postalCode\": \"U2X 1Y2\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - success path",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Cynthia\",\r\n  \"lastName\": \"Shirona\",\r\n  \"emailAddress\": \"champion@sinnoh-league.ca\",\r\n  \"contactMethodPreference\": \"PHONE\",\r\n  \"streetAddress\": \"1 Champion Road\",\r\n  \"city\": \"Pokémon League\",\r\n  \"province\": \"SINNOH\",\r\n  \"country\": \"Japan\",\r\n  \"postalCode\": \"S0A 1C1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/3f4a5b6c-7d8e-9f0a-1b2c-3d4e5f6a7b8c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"3f4a5b6c-7d8e-9f0a-1b2c-3d4e5f6a7b8c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - 404",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Cynthia\",\r\n  \"lastName\": \"Shirona\",\r\n  \"emailAddress\": \"champion@sinnoh-league.com\",\r\n  \"contactMethodPreference\": \"PHONE\",\r\n  \"streetAddress\": \"1 Champion Road\",\r\n  \"city\": \"Pokémon League\",\r\n  \"province\": \"SINNOH\",\r\n  \"country\": \"Japan\",\r\n  \"postalCode\": \"S0A 1C1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - 422",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Cynthia\",\r\n  \"lastName\": \"Shirona\",\r\n  \"emailAddress\": \"champion@sinnoh-league.com\",\r\n  \"contactMethodPreference\": \"PHONE\",\r\n  \"streetAddress\": \"1 Champion Road\",\r\n  \"city\": \"Pokémon League\",\r\n  \"province\": \"SINNOH\",\r\n  \"country\": \"Japan\",\r\n  \"postalCode\": \"S0A 1C1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/short-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"short-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Custom Exception",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"firstName\": \"Cynthia\",\r\n  \"lastName\": \"Shirona\",\r\n  \"emailAddress\": \"gym.leader@castelia.com\",\r\n  \"contactMethodPreference\": \"PHONE\",\r\n  \"streetAddress\": \"1 Champion Road\",\r\n  \"city\": \"Pokémon League\",\r\n  \"province\": \"SINNOH\",\r\n  \"country\": \"Japan\",\r\n  \"postalCode\": \"S0A 1C1\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/3f4a5b6c-7d8e-9f0a-1b2c-3d4e5f6a7b8c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"3f4a5b6c-7d8e-9f0a-1b2c-3d4e5f6a7b8c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - success path",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/3f4a5b6c-7d8e-9f0a-1b2c-3d4e5f6a7b8c",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"3f4a5b6c-7d8e-9f0a-1b2c-3d4e5f6a7b8c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - 404",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/00000000-0000-0000-0000-000000000000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - 422",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/bad-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"bad-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Custom Exception",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/customers/a3b7c9d1-e5f0-4a2b-8c9d-0e1f2a3b4c5d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"a3b7c9d1-e5f0-4a2b-8c9d-0e1f2a3b4c5d"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "creatures",
+			"item": [
+				{
+					"name": "GET ALL – success path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - success path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - 422",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/invalid-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"invalid-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - success path",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"registrationCode\": \"REG-NEW123\",\r\n  \"name\": \"Flicker\",\r\n  \"species\": \"Luxray\",\r\n  \"type\": \"ELECTRIC\",\r\n  \"rarity\": \"RARE\",\r\n  \"level\": 27,\r\n  \"age\": 4,\r\n  \"health\": 88,\r\n  \"experience\": 4200,\r\n  \"status\": \"AVAILABLE\",\r\n  \"strength\": 75,\r\n  \"intelligence\": 70,\r\n  \"agility\": 82,\r\n  \"temperament\": \"FRIENDLY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - 404",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"registrationCode\": \"REG-NOTFOUND\",\r\n  \"name\": \"NotFound\",\r\n  \"species\": \"MissingNo\",\r\n  \"type\": \"NORMAL\",\r\n  \"rarity\": \"COMMON\",\r\n  \"level\": 1,\r\n  \"age\": 1,\r\n  \"health\": 50,\r\n  \"experience\": 100,\r\n  \"status\": \"AVAILABLE\",\r\n  \"strength\": 50,\r\n  \"intelligence\": 50,\r\n  \"agility\": 50,\r\n  \"temperament\": \"DOCILE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creature",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creature"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - 422",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"registrationCode\": \"REG-NEW123\",\r\n  \"name\": \"Flicker\",\r\n  \"species\": \"Luxray\",\r\n  \"type\": \"ELECTRIC\",\r\n  \"rarity\": \"RARE\",\r\n  \"level\": 27,\r\n  \"age\": 4,\r\n  \"health\": 88,\r\n  \"experience\": 4200,\r\n  \"status\": \"AVAILABLE\",\r\n  \"strength\": 75,\r\n  \"intelligence\": 70,\r\n  \"agility\": 82,\r\n  \"temperament\": \"FRIENDLY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Custom Exception",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"registrationCode\": \"REG-DUP123\",\r\n  \"name\": \"Spark\",\r\n  \"species\": \"Pikachu\",\r\n  \"type\": \"ELECTRIC\",\r\n  \"rarity\": \"RARE\",\r\n  \"level\": 20,\r\n  \"age\": 2,\r\n  \"health\": 90,\r\n  \"experience\": 3000,\r\n  \"status\": \"AVAILABLE\",\r\n  \"strength\": 65,\r\n  \"intelligence\": 75,\r\n  \"agility\": 85,\r\n  \"temperament\": \"FRIENDLY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - success path",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"registrationCode\": \"REG-AF45E78D\",\r\n  \"name\": \"Sparkk\",\r\n  \"species\": \"Electabuzz\",\r\n  \"type\": \"ELECTRIC\",\r\n  \"rarity\": \"RARE\",\r\n  \"level\": 26,\r\n  \"age\": 3,\r\n  \"health\": 90,\r\n  \"experience\": 4700,\r\n  \"status\": \"AVAILABLE\",\r\n  \"strength\": 72,\r\n  \"intelligence\": 68,\r\n  \"agility\": 82,\r\n  \"temperament\": \"FRIENDLY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - 404",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - 422",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"registrationCode\": \"REG-INVALID\",\r\n  \"name\": \"Invalid\",\r\n  \"species\": \"ErrorType\",\r\n  \"type\": \"NORMAL\",\r\n  \"rarity\": \"COMMON\",\r\n  \"level\": 1,\r\n  \"age\": 1,\r\n  \"health\": 50,\r\n  \"experience\": 100,\r\n  \"status\": \"AVAILABLE\",\r\n  \"strength\": 50,\r\n  \"intelligence\": 50,\r\n  \"agility\": 50,\r\n  \"temperament\": \"DOCILE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/invalid-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"invalid-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Custom Exception",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"registrationCode\": \"REG-AF45E78D\",\r\n  \"name\": \"Cascade\",\r\n  \"species\": \"Electabuzz\",\r\n  \"type\": \"ELECTRIC\",\r\n  \"rarity\": \"RARE\",\r\n  \"level\": 25,\r\n  \"age\": 3,\r\n  \"health\": 85,\r\n  \"experience\": 4500,\r\n  \"status\": \"AVAILABLE\",\r\n  \"strength\": 70,\r\n  \"intelligence\": 65,\r\n  \"agility\": 80,\r\n  \"temperament\": \"FRIENDLY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - success path",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"a1b2c3d4-e5f6-a7b8-c9d0-e1f2a3b4c5d6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - 404",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - 422",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/invalid-id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"invalid-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Custom Exception",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/creatures/0c1d2e3f-4a5b-6c7d-8e9f-0a1b2c3d4e5f",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"creatures",
+								"0c1d2e3f-4a5b-6c7d-8e9f-0a1b2c3d4e5f"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "trainings",
+			"item": [
+				{
+					"name": "GET ALL – success path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - success path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-111111111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"a9b8c7d6-e5f4-g3h2-i1j0-111111111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - 422",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/invalid-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"invalid-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - success path",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"trainingCode\": \"TRN-87654321\",\r\n  \"name\": \"Shadow Techniques\",\r\n  \"description\": \"Special training for ghost and dark type creatures\",\r\n  \"difficulty\": \"ADVANCED\",\r\n  \"duration\": 5,\r\n  \"status\": \"ACTIVE\",\r\n  \"category\": \"SPECIAL\",\r\n  \"price\": 189.99,\r\n  \"location\": \"Old Chateau - Eterna Forest\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - 404",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"trainingCode\": \"TRN-87654321\",\r\n  \"name\": \"Shadow Techniques\",\r\n  \"description\": \"Special training for ghost and dark type creatures\",\r\n  \"difficulty\": \"ADVANCED\",\r\n  \"duration\": 5,\r\n  \"status\": \"ACTIVE\",\r\n  \"category\": \"SPECIAL\",\r\n  \"price\": 189.99,\r\n  \"location\": \"Old Chateau - Eterna Forest\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/training",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"training"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - 422",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"trainingCode\": \"TRN-87654321\",\r\n  \"name\": \"Shadow Techniques\",\r\n  \"description\": \"Special training for ghost and dark type creatures\",\r\n  \"difficulty\": \"ADVANCED\",\r\n  \"duration\": 5,\r\n  \"status\": \"ACTIVE\",\r\n  \"category\": \"SPECIAL\",\r\n  \"price\": 189.99,\r\n  \"location\": \"Old Chateau - Eterna Forest\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Custom Exception",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"trainingCode\": \"TRN-NEW123456\",\r\n  \"name\": \"Contest Basics\",\r\n  \"description\": \"New training with duplicate name\",\r\n  \"difficulty\": \"BEGINNER\",\r\n  \"duration\": 3,\r\n  \"status\": \"ACTIVE\",\r\n  \"category\": \"CONTEST\",\r\n  \"price\": 99.99,\r\n  \"location\": \"Lilycove Contest Hall\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - success path",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"trainingCode\": \"TRN-12345678\",\r\n  \"name\": \"Advanced Contest Basics\",\r\n  \"description\": \"Updated fundamental training for creature performances\",\r\n  \"difficulty\": \"INTERMEDIATE\",\r\n  \"duration\": 3,\r\n  \"status\": \"ACTIVE\",\r\n  \"category\": \"CONTEST\",\r\n  \"price\": 119.99,\r\n  \"location\": \"Nimbasa Musical Theater\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - 404",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"trainingCode\": \"TRN-UPDATED\",\r\n  \"name\": \"Updated Training\",\r\n  \"description\": \"Updated description\",\r\n  \"difficulty\": \"BEGINNER\",\r\n  \"duration\": 2,\r\n  \"status\": \"ACTIVE\",\r\n  \"category\": \"CONTEST\",\r\n  \"price\": 99.99,\r\n  \"location\": \"Updated Location\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-111111111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"a9b8c7d6-e5f4-g3h2-i1j0-111111111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - 422",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"trainingCode\": \"TRN-UPDATED\",\r\n  \"name\": \"Updated Training\",\r\n  \"description\": \"Updated description\",\r\n  \"difficulty\": \"BEGINNER\",\r\n  \"duration\": 2,\r\n  \"status\": \"ACTIVE\",\r\n  \"category\": \"CONTEST\",\r\n  \"price\": 99.99,\r\n  \"location\": \"Updated Location\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/invalid-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"invalid-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - Custom Exception",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"trainingCode\": \"TRN-23456789\",\r\n  \"name\": \"Contest Basics\",\r\n  \"description\": \"Using an existing name when updating\",\r\n  \"difficulty\": \"INTERMEDIATE\",\r\n  \"duration\": 4,\r\n  \"status\": \"ACTIVE\",\r\n  \"category\": \"SPECIAL\",\r\n  \"price\": 149.99,\r\n  \"location\": \"Celestic Town Ruins\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/b8c7d6e5-f4g3-h2i1-j0k9-l8m7n6o5p4q3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"b8c7d6e5-f4g3-h2i1-j0k9-l8m7n6o5p4q3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - success path",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - 404",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-111111111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"a9b8c7d6-e5f4-g3h2-i1j0-111111111111"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - 422",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/invalid-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"invalid-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Custom Exception",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/trainings/b8c7d6e5-f4g3-h2i1-j0k9-l8m7n6o5p4q3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"trainings",
+								"b8c7d6e5-f4g3-h2i1-j0k9-l8m7n6o5p4q3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "adoptions",
+			"item": [
+				{
+					"name": "GET ALL – success path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET ALL – 422",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions?adoptionId=invalid-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions"
+							],
+							"query": [
+								{
+									"key": "adoptionId",
+									"value": "invalid-uuid"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - success path",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/76db80b7-5f9d-4549-8a94-83d44c43bce6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"76db80b7-5f9d-4549-8a94-83d44c43bce6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - 404",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET by Id - 422",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/invalid-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"invalid-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - success path",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerId\": \"d4e5f6a7-b8c9-d0e1-f2a3-b4c5d6e7f8a9\",\r\n  \"creatureId\": \"9b0c1d2e-3f4a-5b6c-7d8e-9f0a1b2c3d4e\",\r\n  \"trainingId\": \"k9l8m7n6-o5p4-q3r2-s1t0-u9v8w7x6y5z4\",\r\n  \"summary\": \"Electric type adoption profile - Test creation\",\r\n  \"totalAdoptions\": 0,\r\n  \"profileCreationDate\": \"2025-04-25\",\r\n  \"profileStatus\": \"ACTIVE\",\r\n  \"adoptionDate\": \"2025-06-01\",\r\n  \"adoptionLocation\": \"Driftveil City Adoption Center\",\r\n  \"adoptionStatus\": \"PENDING\",\r\n  \"specialNotes\": \"Postman test for successful adoption creation\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - 404",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"creatureId\": \"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee\",\r\n    \"customerId\": \"6f8d2e53-9b4c-48a7-91fe-c508dde7817a\",\r\n    \"trainingId\": \"a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4\",\r\n    \"summary\": \"Adoption with non-existent creature\",\r\n    \"totalAdoptions\": 0,\r\n    \"profileCreationDate\": \"2025-05-10\",\r\n    \"profileStatus\": \"ACTIVE\",\r\n    \"adoptionDate\": \"2025-05-20\",\r\n    \"adoptionLocation\": \"Nimbasa City Adoption Center\",\r\n    \"adoptionStatus\": \"PENDING\",\r\n    \"specialNotes\": \"Special notes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - 422",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"creatureId\": \"invalid-uuid\",\r\n    \"customerId\": \"invalid-uuid\",\r\n    \"trainingId\": \"invalid-uuid\",\r\n    \"summary\": \"Adoption with invalid creature ID\",\r\n    \"totalAdoptions\": 0,\r\n    \"profileCreationDate\": \"2025-05-10\",\r\n    \"profileStatus\": \"ACTIVE\",\r\n    \"adoptionDate\": \"2025-05-20\",\r\n    \"adoptionLocation\": \"Nimbasa City Adoption Center\",\r\n    \"adoptionStatus\": \"PENDING\",\r\n    \"specialNotes\": \"Special notes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST - Custom Exception",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerId\": \"e5f6a7b8-c9d0-e1f2-a3b4-c5d6e7f8a9b0\",\r\n  \"creatureId\": \"1d2e3f4a-5b6c-7d8e-9f0a-1b2c3d4e5f6a\",\r\n  \"trainingId\": \"l8m7n6o5-p4q3-r2s1-t0u9-v8w7x6y5z4a3\",\r\n  \"summary\": \"Testing adoption limit exceeded\",\r\n  \"totalAdoptions\": 0,\r\n  \"profileCreationDate\": \"2025-05-01\",\r\n  \"profileStatus\": \"ACTIVE\",\r\n  \"adoptionDate\": \"2025-05-30\",\r\n  \"adoptionLocation\": \"Nacrene Museum Adoption Center\",\r\n  \"adoptionStatus\": \"PENDING\",\r\n  \"specialNotes\": \"Should fail because Lenora already has 2 completed adoptions\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - success path",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"customerId\": \"f6a7b8c9-d0e1-f2a3-b4c5-d6e7f8a9b0c1\",\r\n  \"creatureId\": \"f3a4b5c6-d7e8-f9a0-b1c2-d3e4f5a6b7c8\",\r\n  \"trainingId\": \"m7n6o5p4-q3r2-s1t0-u9v8-w7x6y5z4a3b2\",\r\n  \"summary\": \"Updated Ghost type adoption profile\",\r\n  \"totalAdoptions\": 0,\r\n  \"profileCreationDate\": \"2025-05-03\",\r\n  \"profileStatus\": \"ACTIVE\",\r\n  \"adoptionDate\": \"2025-05-31\",\r\n  \"adoptionLocation\": \"Old Chateau Adoption Center - Updated\",\r\n  \"adoptionStatus\": \"APPROVED\",\r\n  \"specialNotes\": \"Successfully updated adoption information\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/4cf74c98-7047-4b77-832a-7745aa17a2bc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"4cf74c98-7047-4b77-832a-7745aa17a2bc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - 404",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"creatureId\": \"8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d\",\r\n    \"customerId\": \"7d8e9f0a-1b2c-3d4e-5f6a-7b8c9d0e1f2a\",\r\n    \"trainingId\": \"c7d6e5f4-g3h2-i1j0-k9l8-m7n6o5p4q3r2\",\r\n    \"summary\": \"Elesa's attempt to update a non-existent adoption\",\r\n    \"totalAdoptions\": 1,\r\n    \"profileCreationDate\": \"2025-05-10\",\r\n    \"profileStatus\": \"ACTIVE\",\r\n    \"adoptionDate\": \"2025-05-25\",\r\n    \"adoptionLocation\": \"Battle Subway - Nimbasa City\",\r\n    \"adoptionStatus\": \"APPROVED\",\r\n    \"specialNotes\": \"This will fail as the adoption ID doesn't exist\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT - 422",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"creatureId\": \"8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d\",\r\n    \"customerId\": \"6f8d2e53-9b4c-48a7-91fe-c508dde7817a\",\r\n    \"trainingId\": \"a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4\",\r\n    \"summary\": \"Update with invalid adoption ID\",\r\n    \"totalAdoptions\": 1,\r\n    \"profileCreationDate\": \"2025-05-10\",\r\n    \"profileStatus\": \"ACTIVE\",\r\n    \"adoptionDate\": \"2025-05-25\",\r\n    \"adoptionLocation\": \"Nimbasa City Adoption Center\",\r\n    \"adoptionStatus\": \"APPROVED\",\r\n    \"specialNotes\": \"This will fail as adoption ID format is invalid\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/invalid-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"invalid-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - success path",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/d88b2339-d24b-435b-9ef0-f477f13235fe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"d88b2339-d24b-435b-9ef0-f477f13235fe"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - 404",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - 422",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/invalid-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"invalid-uuid"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE - Custom Exception",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/55212ccd-f45c-489b-ae44-1d2e4e2906d4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"55212ccd-f45c-489b-ae44-1d2e4e2906d4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch 1 - APPROVED",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/76db80b7-5f9d-4549-8a94-83d44c43bce6/status/APPROVED",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"76db80b7-5f9d-4549-8a94-83d44c43bce6",
+								"status",
+								"APPROVED"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch 1 - PENDING",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/76db80b7-5f9d-4549-8a94-83d44c43bce6/status/PENDING",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"76db80b7-5f9d-4549-8a94-83d44c43bce6",
+								"status",
+								"PENDING"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch 1 - COMPLETED",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/76db80b7-5f9d-4549-8a94-83d44c43bce6/status/COMPLETED",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"76db80b7-5f9d-4549-8a94-83d44c43bce6",
+								"status",
+								"COMPLETED"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch 1 - CANCELLED",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/76db80b7-5f9d-4549-8a94-83d44c43bce6/status/CANCELLED",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"76db80b7-5f9d-4549-8a94-83d44c43bce6",
+								"status",
+								"CANCELLED"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch 1 - RETURNED",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/v1/adoptions/76db80b7-5f9d-4549-8a94-83d44c43bce6/status/RETURNED",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"adoptions",
+								"76db80b7-5f9d-4549-8a94-83d44c43bce6",
+								"status",
+								"RETURNED"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

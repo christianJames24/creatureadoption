@@ -1,0 +1,14 @@
+@startuml
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Context.puml
+
+title "System Context Diagram for Car Dealership System"
+
+Person(employee, "Employee", "Employee of the car dealership")
+Person(customer, "Customer", "Customer of the car dealership")
+System(car_dealership, "Car Dealership System", "Allows dealership employees to manage car inventory aand sales")
+
+Rel(employee, car_dealership, "Tracks inventory and customer purchases", "Uses")
+Rel(customer, car_dealership, "View vehicles for sale", "Uses")
+
+'SHOW_LEGEND()
+@enduml

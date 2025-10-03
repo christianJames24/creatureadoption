@@ -1,0 +1,259 @@
+@startuml
+hide circle
+top to bottom direction
+scale 0.2
+!define ENTITY(entityName) class entityName << Entity >>
+!define ENUM(enumName) class enumName << Enum >>
+!define AGGREGATE(aggregateName) class aggregateName << Aggregate >>
+!define AGGREGATE_ROOT(aggregateRootName) class aggregateRootName << Aggregate Root >>
+!define AGGREGATE_ROOT_ENTITY(aggregateRootEntityName) class aggregateRootEntityName << Aggregate Root >> << Entity >>
+!define VALUE_OBJECT(valueObjectName) class valueObjectName << Value Object >>
+!pragma useVerticalIf on
+skinparam dpi 350
+skinparam packageStyle rectangle
+skinparam rectangle {
+    BackgroundColor #f7f4eb
+    BorderColor Black
+}
+
+rectangle "Creature Adoption Context" as BoundedContextCreatureAdoption #line.dashed {
+
+    Package "Creature Sub-Domain" as CreatureManagement <<Rectangle>> #LightGreen {
+
+       ENTITY(Creature) #lightpink {
+            name: String
+            species: String
+            type: CreatureTypeEnum
+            rarity: RarityEnum
+            level: Integer
+            age: Integer
+            health: Integer
+            experience: Integer
+            status: CreatureStatusEnum
+       }
+
+       VALUE_OBJECT(CreatureIdentifier) #Bisque{
+            creatureId: UUID
+            registrationCode: String
+       }
+
+       VALUE_OBJECT(CreatureTraits) #Bisque {
+            strength: Integer
+            intelligence: Integer
+            agility: Integer
+            temperament: TemperamentEnum
+       }
+
+       ENUM(CreatureTypeEnum) {
+            NORMAL
+            FIRE
+            WATER
+            GRASS
+            ELECTRIC
+            ICE
+            FIGHTING
+            POISON
+            GROUND
+            FLYING
+            PSYCHIC
+            BUG
+            ROCK
+            GHOST
+            DRAGON
+            DARK
+            STEEL
+            FAIRY
+       }
+
+       ENUM(RarityEnum) {
+            COMMON
+            UNCOMMON
+            RARE
+            EPIC
+            LEGENDARY
+       }
+
+       ENUM(CreatureStatusEnum) {
+            AVAILABLE
+            ADOPTION_PENDING
+            ADOPTED
+            RESERVED
+            UNAVAILABLE
+       }
+
+       ENUM(TemperamentEnum) {
+            DOCILE
+            FRIENDLY
+            AGGRESSIVE
+            TIMID
+            PLAYFUL
+       }
+
+       Creature --> CreatureIdentifier
+       Creature --> CreatureTypeEnum
+       Creature --> RarityEnum
+       Creature --> CreatureStatusEnum
+       Creature "1" o--> "1" CreatureTraits
+       CreatureTraits --> TemperamentEnum
+
+       'note "each creature needs to have a type at least" as creature
+    }
+
+    Package "Customer Relations Sub-Domain" as CustomerRelations <<Rectangle>> #Salmon {
+        AGGREGATE_ROOT(Customer) #lightblue {
+            firstName: String
+            lastName: String
+            email: String
+            contactMethodPreference: ContactMethodEnum
+        }
+        VALUE_OBJECT(CustomerIdentifier) #Bisque{
+            customerId: UUID
+        }
+        ENUM(ContactMethodEnum) {
+            EMAIL
+            PHONE
+            TEXT
+        }
+        VALUE_OBJECT(CustomerAddress) #Bisque{
+            streetNumber : String
+            streetName: String
+            city: String
+            province: ProvinceEnum
+            postalCode: String
+            }
+        VALUE_OBJECT(CustomerPhoneNumber) #Bisque{
+            type: PhoneTypeEnum
+            phoneNumber: String
+        }
+        ENTITY(CustomerCommunications) #lightpink {
+            communicationType: CommunicationTypeEnum
+            communicationDate: Date
+            communicationTime: Time
+            communicationContent: String
+        }
+        ENUM(CommunicationTypeEnum) {
+            EMAIL
+            PHONE
+            WEBSITE
+        }
+        ENUM(PhoneTypeEnum) {
+            HOME
+            WORK
+            MOBILE
+            OTHER
+        }
+        ENUM(ProvinceEnum) {
+            QUEBEC
+            ONTARIO
+            BRITISH_COLUMBIA
+            ALBERTA
+            MANITOBA
+            SASKATCHEWAN
+            NOVA_SCOTIA
+            NEW_BRUNSWICK
+            NEWFOUNDLAND
+            PEI
+        }
+        VALUE_OBJECT(CommunicationIdentifier) #Bisque{
+            communicationId: UUID
+        }
+        Customer --> CustomerIdentifier
+        Customer "1" o--> "1" CustomerAddress
+        Customer "1" o--> "1..*" CustomerPhoneNumber
+        Customer --> ContactMethodEnum
+        CustomerCommunications --> CommunicationIdentifier
+        CustomerCommunications --> CommunicationTypeEnum
+        Customer "1" o--> "0..*" CommunicationIdentifier
+        CustomerPhoneNumber --> PhoneTypeEnum
+        CustomerAddress --> ProvinceEnum
+    }
+
+    Package "Training Sub-Domain" as Training <<Rectangle>> #lightcyan {
+        ENTITY(Training) #lightpink {
+            name: String
+            description: String
+            difficulty: DifficultyEnum
+            duration: Integer
+            status: TrainingStatusEnum
+            category: TrainingCategoryEnum
+            price: Double
+            location: String
+        }
+
+        VALUE_OBJECT(TrainingIdentifier) #Bisque{
+            trainingId: UUID
+            trainingCode: String
+        }
+
+        ENUM(DifficultyEnum) {
+            BEGINNER
+            INTERMEDIATE
+            ADVANCED
+        }
+
+        ENUM(TrainingStatusEnum) {
+            ACTIVE
+            INACTIVE
+            FULL
+        }
+
+        ENUM(TrainingCategoryEnum) {
+            CONTEST
+            ATTACK
+            DEFENCE
+            SPECIAL
+        }
+
+        Training --> TrainingIdentifier
+        Training --> DifficultyEnum
+        Training --> TrainingStatusEnum
+        Training --> TrainingCategoryEnum
+
+        'note "training must have a difficulty level" as training
+    }
+
+Package "Adoption Management Sub-Domain" as AdoptionManagement <<Rectangle>> #DFBDF4 {
+
+   note "Invariant: [When a creature is adopted (adoption.status is set to PENDING), its status in the creature must be set to ADOPTION_PENDING] Any change in adoptionstatus will then result in a change in creaturestatus too" as adoptionInventoryInvariant
+
+   AGGREGATE_ROOT_ENTITY(Adoption) #lightblue {
+        summary: String
+        totalAdoptions: Integer
+        profileCreationDate: Date
+        lastUpdated: Date
+        status: ProfileStatusEnum
+        adoptionDate: Date
+        adoptionLocation: String
+        adoptionStatus: AdoptionStatusEnum
+        specialNotes: String
+   }
+
+   VALUE_OBJECT(AdoptionIdentifier) #Bisque{
+        adoptionId: UUID
+   }
+
+   ENUM(ProfileStatusEnum) {
+        ACTIVE
+        INACTIVE
+        SUSPENDED
+   }
+
+   ENUM(AdoptionStatusEnum) {
+        PENDING
+        APPROVED
+        COMPLETED
+        CANCELLED
+        RETURNED
+   }
+
+   Adoption --> AdoptionIdentifier
+   Adoption --> ProfileStatusEnum
+   Adoption --> AdoptionStatusEnum
+
+   note "total creatures cant be over 2" as adoptionLimit
+
+   Adoption -d-> CustomerIdentifier
+   Adoption -d-> CreatureIdentifier
+   Adoption -d-> TrainingIdentifier
+}
+@enduml

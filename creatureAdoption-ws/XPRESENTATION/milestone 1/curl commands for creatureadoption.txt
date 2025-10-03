@@ -1,0 +1,173 @@
+---------------------------------------------------------------------------------------------------------
+trainings-controller
+
+GET 1:
+curl -X 'GET' \
+  'http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4' \
+  -H 'accept: application/json'
+
+PUT 1:
+curl -X 'PUT' \
+  'http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "string",
+  "description": "string",
+  "difficulty": "BEGINNER",
+  "duration": 0,
+  "status": "ACTIVE",
+  "category": "ATTACK",
+  "price": 0,
+  "location": "string"
+}'
+
+DELETE 1:
+curl -X 'DELETE' \
+  'http://localhost:8080/api/v1/trainings/a9b8c7d6-e5f4-g3h2-i1j0-k9l8m7n6o5p4' \
+  -H 'accept: */*'
+
+GET ALL:
+curl -X 'GET' \
+  'http://localhost:8080/api/v1/trainings' \
+  -H 'accept: application/json'
+
+POST 1:
+curl -X 'POST' \
+  'http://localhost:8080/api/v1/trainings' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "string",
+  "description": "string",
+  "difficulty": "BEGINNER",
+  "duration": 0,
+  "status": "ACTIVE",
+  "category": "ATTACK",
+  "price": 0,
+  "location": "string"
+}'
+
+---------------------------------------------------------------------------------------------------------
+customers-controller
+
+GET 1:
+curl -X 'GET' \
+  'http://localhost:8080/api/v1/customers/6f8d2e53-9b4c-48a7-91fe-c508dde7817a' \
+  -H 'accept: application/json'
+
+PUT 1:
+curl -X 'PUT' \
+  'http://localhost:8080/api/v1/customers/6f8d2e53-9b4c-48a7-91fe-c508dde7817a' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "firstName": "string",
+  "lastName": "string",
+  "emailAddress": "string",
+  "contactMethodPreference": "EMAIL",
+  "streetAddress": "string",
+  "city": "string",
+  "province": "string",
+  "country": "string",
+  "postalCode": "string",
+  "phoneNumbers": [
+    {
+      "type": "HOME",
+      "number": "string"
+    }
+  ]
+}'
+
+DELETE 1:
+curl -X 'DELETE' \
+  'http://localhost:8080/api/v1/customers/6f8d2e53-9b4c-48a7-91fe-c508dde7817a' \
+  -H 'accept: */*'
+
+GET ALL:
+curl -X 'GET' \
+  'http://localhost:8080/api/v1/customers' \
+  -H 'accept: application/json'
+
+POST 1:
+curl -X 'POST' \
+  'http://localhost:8080/api/v1/customers' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "firstName": "string",
+  "lastName": "string",
+  "emailAddress": "string",
+  "contactMethodPreference": "EMAIL",
+  "streetAddress": "string",
+  "city": "string",
+  "province": "string",
+  "country": "string",
+  "postalCode": "string",
+  "phoneNumbers": [
+    {
+      "type": "HOME",
+      "number": "string"
+    }
+  ]
+}'
+
+---------------------------------------------------------------------------------------------------------
+creatures-controller
+
+GET 1:
+curl -X 'GET' \
+  'http://localhost:8080/api/v1/creatures/8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d' \
+  -H 'accept: application/json'
+
+PUT 1:
+curl -X 'PUT' \
+  'http://localhost:8080/api/v1/creatures/8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "string",
+  "species": "string",
+  "type": "NORMAL",
+  "rarity": "COMMON",
+  "level": 0,
+  "age": 0,
+  "health": 0,
+  "experience": 0,
+  "status": "AVAILABLE",
+  "strength": 0,
+  "intelligence": 0,
+  "agility": 0,
+  "temperament": "DOCILE"
+}'
+
+DELETE 1:
+curl -X 'DELETE' \
+  'http://localhost:8080/api/v1/creatures/8a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d' \
+  -H 'accept: */*'
+
+GET ALL:
+curl -X 'GET' \
+  'http://localhost:8080/api/v1/creatures' \
+  -H 'accept: application/json'
+
+POST 1:
+curl -X 'POST' \
+  'http://localhost:8080/api/v1/creatures' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "string",
+  "species": "string",
+  "type": "NORMAL",
+  "rarity": "COMMON",
+  "level": 0,
+  "age": 0,
+  "health": 0,
+  "experience": 0,
+  "status": "AVAILABLE",
+  "strength": 0,
+  "intelligence": 0,
+  "agility": 0,
+  "temperament": "DOCILE"
+}'

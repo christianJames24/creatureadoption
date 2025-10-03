@@ -1,0 +1,28 @@
+creatures-service:
+http://localhost:5015
+Email: admin@example.com
+Password: admin
+
+After logging in, you'll need to add a server connection:
+
+Right-click on "Servers" in the left panel and select "Register > Server"
+On the General tab, give it a name like "Creatures DB"
+On the Connection tab, enter:
+
+Host: postgres1
+Port: 5432
+Maintenance database: creatures-db
+Username: user
+Password: pwd
+
+---------------------------------------------------------------------
+customers-service
+http://localhost:5013
+Username: user
+Password: pwd
+
+---------------------------------------------------------------------
+trainings-service
+http://localhost:5014
+Username: user
+Password: pwd
