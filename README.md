@@ -28,12 +28,12 @@ From a technical standpoint, the project demonstrates:
 ### System Context (C4 Level 1)
 At the highest level, a customer interacts with the Creature Adoption System to browse creatures and request adoptions.
 
-![C4 Level 1](c4l1.png)
+![C4 Level 1](Diagrams/c4l1.png)
 
 ### Container Diagram (C4 Level 2)
 The system is composed of a React single-page application (planned), an API Gateway, and four backend microservices.
 
-![C4 Level 2](c4l2.png)
+![C4 Level 2](Diagrams/c4l2.png)
 
 - **Web Application / SPA (React, JS):** Frontend client for customers (future implementation).
 - **API Gateway (Spring Boot):** Routes all API requests through a single entry point (port 8080).
@@ -55,7 +55,7 @@ The system is split into subdomains:
 - **Customer Relations** – manages customer data.
 - **Training Domain** – stores and manages creature training sessions.
 
-![DDD Model](creatureAdoptionDDD.png)
+![DDD Model](Diagrams/creatureAdoptionDDD.png)
 
 ---
 
@@ -88,7 +88,7 @@ Average coverage: ~90%
 ### Prerequisites
 - Java 17
 - Gradle
-- Docker
+- Docker Desktop installed and running
 
 ### Build and Test
 ```bash
